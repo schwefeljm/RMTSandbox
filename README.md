@@ -2,6 +2,9 @@
 
 Code to FAFO esp-ifd v5.1/Arduino Core 3.0 RMT functionality
 
+## Notes
+* using `uint64_t` does not work. waveform goes batshit.
+
 ## Getting Started
 
 ### Dependencies

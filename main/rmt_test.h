@@ -26,6 +26,7 @@ class RMTTest {
     void sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel);
 
 
+
   private:
     // Both RMT TX and RX channels are represented by rmt_channel_handle_t in
     // the driver. The driver internally manages which channels are available

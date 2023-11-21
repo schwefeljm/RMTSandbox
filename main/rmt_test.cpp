@@ -8,7 +8,7 @@ RMTTest::RMTTest(gpio_num_t pin) {
   rmt_enable(rmtChannel);
 }
 
-void RMTTest::sendBytes(byte *data, int loopCount, uint32_t eotLevel){
+void RMTTest::sendBytes(byte *data, int loopCount, uint32_t eotLevel) {
   // RMT transmit specific configuration.
   //
   // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-reference/peripherals/rmt.html#_CPPv421rmt_transmit_config_t
@@ -26,8 +26,7 @@ void RMTTest::sendBytes(byte *data, int loopCount, uint32_t eotLevel){
   rmt_transmit(rmtChannel, rmtSimpleByteEncoder, data, (sizeof(*data) / sizeof(byte)), &txConf);
 }
 
-void RMTTest::sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel)
-{
+void RMTTest::sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel) {
   const rmt_transmit_config_t txConf = {
     .loop_count = loopCount,
 
@@ -36,7 +35,7 @@ void RMTTest::sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel)
     },
   };
 
-  ESP_ERROR_CHECK(rmt_transmit(rmtChannel, rmtSimpleByteEncoder, &data, (sizeof(uint32_t) / sizeof(byte)), &txConf));
+  ESP_ERROR_CHECK(rmt_transmit(rmtChannel, rmtSimpleByteEncoder, &data, sizeof(uint32_t), &txConf));
 }
 
 void RMTTest::createChannel(gpio_num_t pin)

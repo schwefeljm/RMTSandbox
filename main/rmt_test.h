@@ -2,6 +2,7 @@
 
 #include "driver/gpio.h"
 #include "driver/rmt_tx.h"
+#include "blitter.h"
 
 #define SYMBOL_WORD_LEVEL0    HIGH  
 #define SYMBOL_WORD_LEVEL1    LOW  
@@ -25,9 +26,6 @@ class RMTTest {
     void sendBytes(byte* data, int loopCount, uint32_t eotLevel);
     void sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel);
 
-
-
-  private:
     // Both RMT TX and RX channels are represented by rmt_channel_handle_t in
     // the driver. The driver internally manages which channels are available
     // and hands out a free channel on request.
@@ -35,14 +33,16 @@ class RMTTest {
     // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-reference/peripherals/rmt.html#resource-allocation
     rmt_channel_handle_t rmtChannel;
 
-    void createChannel(gpio_num_t pin);
-
+    
     // An RMT encoder is part of the RMT TX transaction, whose responsibility
     // is to generate and write the correct RMT symbols into hardware memory
     // or DMA buffer at a specific time. 
     //
     // https://docs.espressif.com/projects/esp-idf/en/v5.1.2/esp32/api-reference/peripherals/rmt.html#rmt-encoder
     rmt_encoder_handle_t rmtSimpleByteEncoder;
+
+  private:
+    void createChannel(gpio_num_t pin);
     void createSimpleBytEncoder(bool msbFirst);  
 
 };

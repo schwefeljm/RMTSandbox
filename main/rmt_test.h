@@ -3,8 +3,8 @@
 #include "driver/gpio.h"
 #include "driver/rmt_tx.h"
 
-#define SYMBOL_WORD_LEVEL0    HIGH  
-#define SYMBOL_WORD_LEVEL1    LOW  
+#define SYMBOL_WORD_LEVEL0    LOW  
+#define SYMBOL_WORD_LEVEL1    HIGH  
 
 #define UNUSED_PIN            GPIO_NUM_NC
 #define RMT_CLOCK_FREQUENCY   80000000
@@ -22,9 +22,7 @@
 class RMTTest {
   public:
     RMTTest(gpio_num_t pin);
-    void sendBytes(byte* data, int loopCount, uint32_t eotLevel);
-    void sendUint32_t(uint32_t data, int loopCount, uint32_t eotLevel);
-
+    void sendBytes(byte data[], size_t sizeInBytes, int loopCount, uint32_t eotLevel);
 
   private:
     // Both RMT TX and RX channels are represented by rmt_channel_handle_t in

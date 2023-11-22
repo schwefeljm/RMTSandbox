@@ -24,6 +24,7 @@ class RMTTest {
     RMTTest(gpio_num_t pin);
     void sendBytes(byte data[], size_t sizeInBytes, int loopCount, uint32_t eotLevel);
 
+
   private:
     // Both RMT TX and RX channels are represented by rmt_channel_handle_t in
     // the driver. The driver internally manages which channels are available

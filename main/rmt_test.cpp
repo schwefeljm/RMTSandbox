@@ -8,6 +8,7 @@ RMTTest::RMTTest(gpio_num_t pin) {
   rmt_enable(rmtChannel);
 }
 
+
 void RMTTest::sendBytes(byte data[], size_t sizeInBytes, int loopCount, uint32_t eotLevel) {
   
   const rmt_transmit_config_t txConf = {
@@ -16,7 +17,6 @@ void RMTTest::sendBytes(byte data[], size_t sizeInBytes, int loopCount, uint32_t
       .eot_level = eotLevel
     },
   };
-  
   ESP_ERROR_CHECK(rmt_transmit(rmtChannel, rmtSimpleByteEncoder, data, sizeInBytes, &txConf));
 }
 
